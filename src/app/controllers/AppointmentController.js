@@ -60,6 +60,12 @@ class AppointmentController {
         .json({ error: 'You can only create appointments with providers' });
     }
 
+    if (provider_id === req.userId) {
+      return res.status(400).json({
+        error: 'It is not possible to create a schedule for a provider.',
+      });
+    }
+
     /**
      * Check for past dates
      */
